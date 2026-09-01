@@ -1,0 +1,172 @@
+/* public/styles.css */
+
+:root {
+    --bg-color: #050505;
+    --text-main: #00ff41; /* Terminal Green */
+    --alert: #ff003c;     /* Error/Alert Red */
+    --panel-bg: #111;
+    --border-color: #333;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Header & Wallet */
+header {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--text-main);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    flex-wrap: wrap; /* Allows stacking on very small screens */
+    gap: 10px;
+}
+
+.wallet {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Navigation Tabs */
+.nav-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    overflow-x: auto; /* Scrollable tabs on mobile */
+    scrollbar-width: none; /* Hide scrollbar for cleaner look */
+}
+
+.nav-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.tab {
+    padding: 10px 15px;
+    background: var(--panel-bg);
+    border: 1px solid var(--text-main);
+    color: var(--text-main);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: 0.2s ease-in-out;
+}
+
+.tab:hover, .tab.active {
+    background: var(--text-main);
+    color: var(--bg-color);
+}
+
+/* Grid System for Mobile & PC */
+.challenge-grid {
+    display: grid;
+    /* This automatically adjusts from 1 column on phones to multiple on PCs */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* Mission & Challenge Cards */
+.card {
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    background: var(--panel-bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.card h3 {
+    margin-top: 0;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* Form Elements */
+input[type="text"] {
+    background: #000;
+    border: 1px solid var(--text-main);
+    color: var(--text-main);
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto; /* Pushes input to the bottom of the card */
+    font-family: inherit;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    box-shadow: 0 0 5px var(--text-main);
+}
+
+button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    background: var(--text-main);
+    color: var(--bg-color);
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: inherit;
+    text-transform: uppercase;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #00cc33;
+}
+
+button:disabled {
+    background: #333;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* Glitch Animation Keyframes */
+@keyframes glitch {
+    0% { transform: translate(0) }
+    20% { transform: translate(-2px, 2px) }
+    40% { transform: translate(-2px, -2px) }
+    60% { transform: translate(2px, 2px) }
+    80% { transform: translate(2px, -2px) }
+    100% { transform: translate(0) }
+}
+
+#endgame-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#endgame-text {
+    font-size: 1.5rem;
+    line-height: 2;
+    white-space: pre-wrap;
+    text-shadow: 0 0 5px var(--text-main);
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIT: 404 - OPERATOR TERMINAL</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div>OPERATOR STATUS: ACTIVE</div>
+        <div class="wallet">BALANCE: <span id="balance-display">0 CIT$</span></div>
+    </header>
+
+    <main>
+        <!-- Phase I: Digital Arena -->
+        <div id="phase-one-dashboard">
+            <div class="nav-tabs">
+                <div class="tab active">CP Challenges</div>
+                <div class="tab">CTF Archive</div>
+                <div class="tab">Data Fragments</div>
+                <div class="tab" style="border-color: var(--alert); color: var(--alert);">Phase II: Missions (LOCKED)</div>
+            </div>
+
+            <div class="challenge-grid">
+                <div class="card">
+                    <h3>CTF-01: Ghost Node</h3>
+                    <p>Reward: 50 CIT$</p>
+                    <p>Trace the lost packet through the routing tables and retrieve the flag.</p>
+                    <input type="text" placeholder="Enter Flag (cit{...})">
+                    <button>SUBMIT FLAG</button>
+                </div>
+                
+                <div class="card">
+                    <h3>CP-04: Memory Leak</h3>
+                    <p>Reward: 75 CIT$</p>
+                    <p>Optimize the provided algorithm to output the sequence under O(N) complexity.</p>
+                    <input type="text" placeholder="Enter Output String">
+                    <button>SUBMIT ANSWER</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase II: Field Missions Dashboard (Initially Hidden) -->
+        <div id="phase-two-dashboard" style="display: none;">
+            <div class="nav-tabs">
+                <div class="tab active" onclick="switchTab('missions')">Field Missions</div>
+                <div class="tab" onclick="switchTab('market')">Marketplace</div>
+                <div class="tab" onclick="switchTab('logs')" style="color: var(--alert);">Encrypted Logs</div>
+            </div>
+
+            <!-- Available Missions Panel -->
+            <div id="missions-panel" class="challenge-grid">
+                <div class="card" id="mission-signal">
+                    <h3>Signal Lost</h3>
+                    <p>Difficulty: ★★☆☆☆</p>
+                    <p>Cost: 100 CIT$ | Reward: 180 CIT$</p>
+                    <p>Locate the missing communication signal inside the territory.</p>
+                    <label style="font-size: 0.8rem;">
+                        <input type="checkbox" id="insure-signal"> Add Mission Insurance (100 CIT$)
+                    </label>
+                    <button onclick="purchaseMission('signal', 100)">AUTHORIZE DEPLOYMENT</button>
+                </div>
+                
+                <div class="card" id="mission-breach">
+                    <h3>System Breach</h3>
+                    <p>Difficulty: ★★★★★</p>
+                    <p>Cost: 400 CIT$ | Reward: 900 CIT$</p>
+                    <p>Recover all fragmented data across multiple locations to unlock the final key.</p>
+                    <label style="font-size: 0.8rem;">
+                        <input type="checkbox" id="insure-breach"> Add Mission Insurance (100 CIT$)
+                    </label>
+                    <button onclick="purchaseMission('breach', 400)">AUTHORIZE DEPLOYMENT</button>
+                </div>
+            </div>
+
+            <!-- Marketplace Panel -->
+            <div id="market-panel" class="challenge-grid" style="display: none;">
+                <div class="card">
+                    <h3>Hint Level 1</h3>
+                    <p>Cost: 30 CIT$</p>
+                    <p>Acquire a small physical location clue.</p>
+                    <button onclick="purchaseItem('hint_1', 30)">BUY</button>
+                </div>
+                <div class="card">
+                    <h3>Time Boost</h3>
+                    <p>Cost: Variable</p>
+                    <p>Injects extra minutes into an active physical mission.</p>
+                    <button onclick="purchaseItem('boost_time', 50)">BUY</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Final Endgame Overlay (Initially Hidden) -->
+    <div id="endgame-screen" style="display: none;">
+        <div id="endgame-text"></div>
+    </div>
+
+    <!-- Required Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
